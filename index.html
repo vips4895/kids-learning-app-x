@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduSmart - Learning Hub (Nursery to Class 10th)</title>
+    <title>EduSmart - All Subjects Learning Hub (Nursery to 10th)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -44,6 +44,14 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col">
 
+    <!-- TOP ADVERT BANNER PLACEHOLDER -->
+    <div class="bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-200 text-xs py-1.5 px-4 text-center border-b border-amber-200 dark:border-amber-800 flex items-center justify-center gap-2">
+        <span class="bg-amber-500 text-white font-bold text-[10px] px-1.5 py-0.5 rounded">AD</span>
+        <span>Get EduSmart Pro Subscription at 50% OFF! Learn Without Ads.</span>
+        <button onclick="openSubscriptionModal()" class="underline font-bold text-indigo-600 dark:text-indigo-400">Upgrade Now</button>
+    </div>
+
+    <!-- HEADER -->
     <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
             
@@ -54,7 +62,7 @@
                 </div>
                 <div>
                     <h1 class="kids-font text-2xl sm:text-3xl text-indigo-600 dark:text-indigo-400 leading-none">EduSmart Hub</h1>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-0.5">Nursery to Class 10th</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-0.5">Nursery to Class 10th (All Subjects)</p>
                 </div>
             </div>
 
@@ -74,8 +82,11 @@
                 </button>
             </div>
 
-            <!-- Controls (Theme Toggle & Score) -->
-            <div class="flex items-center gap-3">
+            <!-- Controls (Pro Subscription, Theme & Score) -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="openSubscriptionModal()" class="bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow hover:scale-105 transition-transform flex items-center gap-1">
+                    👑 <span>PRO Pass</span>
+                </button>
                 <div class="bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 border border-amber-300 dark:border-amber-700">
                     <span>⭐ Score:</span>
                     <span id="global-score">0</span>
@@ -87,16 +98,16 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+    <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full space-y-6">
 
         <!-- ================= SECTION 1: NURSERY & KG ================= -->
         <section id="view-nursery" class="space-y-6">
             <div class="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-3xl p-6 text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
                     <h2 class="kids-font text-3xl sm:text-4xl">Early Childhood Learning 🎉</h2>
-                    <p class="text-pink-100 text-sm sm:text-base mt-1">Interactive Alphabets, Numbers, Colors, Shapes, and Animals with Speech & Sound!</p>
+                    <p class="text-pink-100 text-sm sm:text-base mt-1">Interactive Alphabets, Numbers, Colors, Shapes, and Animals with Voice & Sound!</p>
                 </div>
-                <div class="flex gap-2">
+                <div class="flex flex-wrap gap-2">
                     <button onclick="filterNurseryCategory('all')" class="bg-white/20 hover:bg-white/30 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-bold border border-white/30">All</button>
                     <button onclick="filterNurseryCategory('abc')" class="bg-white/20 hover:bg-white/30 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-bold border border-white/30">🔤 ABC</button>
                     <button onclick="filterNurseryCategory('123')" class="bg-white/20 hover:bg-white/30 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-bold border border-white/30">🔢 123</button>
@@ -113,7 +124,7 @@
         <section id="view-primary" class="hidden space-y-6">
             <div class="bg-gradient-to-r from-blue-600 to-cyan-500 rounded-3xl p-6 text-white shadow-lg">
                 <h2 class="text-2xl sm:text-3xl font-extrabold">Primary School (Class 1-5) 📘</h2>
-                <p class="text-blue-100 text-sm mt-1">Master Math Tables, Grammar Essentials, and Fundamental Science!</p>
+                <p class="text-blue-100 text-sm mt-1">Master Math Tables, English Grammar, Science Concepts & Social Studies!</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -128,9 +139,9 @@
                     </div>
                 </div>
 
-                <!-- Primary Science Basics Flashcards -->
+                <!-- Primary All Subject Concepts Flashcards -->
                 <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4 md:col-span-2">
-                    <h3 class="font-bold text-lg text-emerald-600 dark:text-emerald-400">🌱 Science & Grammar Concepts</h3>
+                    <h3 class="font-bold text-lg text-emerald-600 dark:text-emerald-400">📚 Primary Subjects (English, Science, SST, Math)</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="primary-concepts">
                         <!-- Primary concepts -->
                     </div>
@@ -142,9 +153,7 @@
                 <h3 class="font-bold text-xl mb-4 text-purple-600 dark:text-purple-400 flex items-center gap-2">
                     <span>🎯</span> Class 1-5 Practice Quiz
                 </h3>
-                <div id="primary-quiz-container" class="space-y-4">
-                    <!-- Dynamic Primary Quiz -->
-                </div>
+                <div id="primary-quiz-container" class="space-y-4"></div>
             </div>
         </section>
 
@@ -152,14 +161,13 @@
         <section id="view-middle" class="hidden space-y-6">
             <div class="bg-gradient-to-r from-emerald-600 to-teal-500 rounded-3xl p-6 text-white shadow-lg">
                 <h2 class="text-2xl sm:text-3xl font-extrabold">Middle School (Class 6-8) 🔬</h2>
-                <p class="text-emerald-100 text-sm mt-1">Physics, Chemistry, Biology interactive concepts, Math Formulas & Facts!</p>
+                <p class="text-emerald-100 text-sm mt-1">Physics, Chemistry, Biology, Math Formulas & History Essentials!</p>
             </div>
 
-            <!-- Subject Tabs for Middle School -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Math Formulas -->
                 <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3">
-                    <h3 class="font-bold text-lg text-blue-600 dark:text-blue-400">📐 Math Formulas</h3>
+                    <h3 class="font-bold text-lg text-blue-600 dark:text-blue-400">📐 Math Formulas & Rules</h3>
                     <div class="space-y-2 text-sm">
                         <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-2xl border dark:border-slate-700">
                             <span class="font-bold block text-slate-700 dark:text-slate-200">Area of Circle:</span>
@@ -167,7 +175,7 @@
                         </div>
                         <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-2xl border dark:border-slate-700">
                             <span class="font-bold block text-slate-700 dark:text-slate-200">Perimeter of Rectangle:</span>
-                            <code class="text-pink-600 dark:text-pink-400 font-bold">P = 2 × (Length + Width)</code>
+                            <code class="text-pink-600 dark:text-pink-400 font-bold">P = 2 × (L + W)</code>
                         </div>
                         <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-2xl border dark:border-slate-700">
                             <span class="font-bold block text-slate-700 dark:text-slate-200">Speed Formula:</span>
@@ -176,9 +184,9 @@
                     </div>
                 </div>
 
-                <!-- Science Key Cards -->
+                <!-- Science & Social Cards -->
                 <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3 md:col-span-2">
-                    <h3 class="font-bold text-lg text-teal-600 dark:text-teal-400">⚗️ Science Flashcards</h3>
+                    <h3 class="font-bold text-lg text-teal-600 dark:text-teal-400">⚗️ Science & Social Science Concepts</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="middle-flashcards">
                         <!-- Science dynamic content -->
                     </div>
@@ -196,16 +204,21 @@
 
         <!-- ================= SECTION 4: CLASS 9 - 10 ================= -->
         <section id="view-high" class="hidden space-y-6">
-            <div class="bg-gradient-to-r from-purple-700 via-indigo-700 to-blue-700 rounded-3xl p-6 text-white shadow-lg">
-                <h2 class="text-2xl sm:text-3xl font-extrabold">High School (Class 9th & 10th) 🎓</h2>
-                <p class="text-purple-100 text-sm mt-1">Advanced Mathematics, Physics Laws, Chemical Equations & Test Preparation!</p>
+            <div class="bg-gradient-to-r from-purple-700 via-indigo-700 to-blue-700 rounded-3xl p-6 text-white shadow-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold">High School (Class 9th & 10th) 🎓</h2>
+                    <p class="text-purple-100 text-sm mt-1">Advanced Math, Physics, Chemistry, Biology & Exam Prep!</p>
+                </div>
+                <button onclick="openSubscriptionModal()" class="bg-amber-400 hover:bg-amber-300 text-slate-900 font-extrabold px-5 py-2.5 rounded-2xl text-xs shadow-md shrink-0">
+                    🔒 Unlock Full Solution Notes
+                </button>
             </div>
 
             <!-- Formula Bank & Key Concepts -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <!-- Class 9/10 Math Formulas -->
                 <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3">
-                    <h3 class="font-bold text-lg text-indigo-600 dark:text-indigo-400">🧮 Algebra & Geometry Formulas</h3>
+                    <h3 class="font-bold text-lg text-indigo-600 dark:text-indigo-400">🧮 Algebra, Geometry & Trig</h3>
                     <div class="space-y-3 text-xs sm:text-sm">
                         <div class="p-3 bg-indigo-50 dark:bg-indigo-950/40 rounded-2xl border border-indigo-100 dark:border-indigo-900">
                             <p class="font-bold text-indigo-900 dark:text-indigo-300">Quadratic Formula:</p>
@@ -217,223 +230,327 @@
                         </div>
                         <div class="p-3 bg-indigo-50 dark:bg-indigo-950/40 rounded-2xl border border-indigo-100 dark:border-indigo-900">
                             <p class="font-bold text-indigo-900 dark:text-indigo-300">Trigonometry Identity:</p>
-                            <p class="font-mono text-slate-700 dark:text-slate-300 mt-1">sin²(θ) + cos<!DOCTYPE html>
-<html lang="en" class="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduSmart - Learning Hub (Nursery to Class 10th)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+                            <p class="font-mono text-slate-700 dark:text-slate-300 mt-1">sin²(θ) + cos²(θ) = 1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Physics, Chemistry, Bio Concepts -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3 lg:col-span-2">
+                    <h3 class="font-bold text-lg text-purple-600 dark:text-purple-400">⚡ Physics, Chemistry & Biology Notes</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="high-concepts">
+                        <!-- High school dynamic cards -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ADVERTISEMENT SLOT MIDDLE -->
+            <div class="bg-slate-200 dark:bg-slate-800 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-3xl p-4 text-center text-xs text-slate-500 my-4">
+                <p class="font-semibold">[ Advertisement Space / Google AdSense Banner ]</p>
+                <p class="text-[10px] opacity-75 mt-0.5">Ads will display here for free tier users</p>
+            </div>
+
+            <!-- High School Interactive Test -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-xl text-indigo-600 dark:text-indigo-400 flex items-center gap-2">
+                        <span>📝</span> Class 9-10 Board Exam Practice Test
+                    </h3>
+                    <span class="text-xs bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full font-bold">Exam Level</span>
+                </div>
+                <div id="high-quiz-container" class="space-y-4"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER WITH ADS & LEGAL -->
+    <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 py-6 mt-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 space-y-2">
+            <p class="font-semibold text-slate-700 dark:text-slate-300">EduSmart Hub © 2026 - Complete Learning App for Nursery to Class 10th</p>
+            <div class="flex justify-center gap-4 text-slate-400">
+                <button onclick="openSubscriptionModal()" class="hover:underline">PRO Subscription</button>
+                <span>•</span>
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <span>•</span>
+                <a href="#" class="hover:underline">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SPEECH MODAL FOR NURSERY -->
+    <div id="speech-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300" onclick="closeSpeechModal()">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl border-4 border-indigo-400 transform scale-95 transition-transform" onclick="event.stopPropagation()">
+            <div id="modal-emoji" class="text-8xl mb-3 animate-bounce">🍎</div>
+            <div id="modal-symbol" class="kids-font text-6xl text-indigo-600 dark:text-indigo-400 mb-1">A</div>
+            <div id="modal-name" class="font-bold text-2xl text-slate-800 dark:text-slate-100 mb-6">Apple</div>
+            <button onclick="closeSpeechModal()" class="w-full bg-gradient-to-r from-pink-500 to-indigo-600 text-white font-bold py-3 rounded-2xl shadow-lg hover:opacity-90 active:scale-95 transition-all">
+                Great! ✨
+            </button>
+        </div>
+    </div>
+
+    <!-- SUBSCRIPTION / PRO PAYMENT MODAL -->
+    <div id="subscription-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300" onclick="closeSubscriptionModal()">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center shadow-2xl border-2 border-amber-400 transform scale-95 transition-transform relative" onclick="event.stopPropagation()">
+            <button onclick="closeSubscriptionModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold">✕</button>
+            
+            <div class="text-4xl mb-2">👑</div>
+            <h3 class="kids-font text-2xl text-amber-500 dark:text-amber-400">EduSmart PRO Pass</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Unlock 100% Ad-Free Experience & Class 9-10 Solutions!</p>
+
+            <div class="my-6 space-y-3 text-left border-y border-slate-100 dark:border-slate-700 py-4 text-xs font-semibold">
+                <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+                    <span>✅</span> <span>Ad-Free Unlimited Learning</span>
+                </div>
+                <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+                    <span>✅</span> <span>Class 9th & 10th Full Exam Solutions</span>
+                </div>
+                <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+                    <span>✅</span> <span>Downloadable Study Notes & Practice Papers</span>
+                </div>
+            </div>
+
+            <!-- Pricing Box -->
+            <div class="bg-amber-50 dark:bg-amber-950/40 p-4 rounded-2xl border border-amber-200 dark:border-amber-800 mb-6 flex justify-between items-center">
+                <div class="text-left">
+                    <span class="text-xs font-bold text-amber-800 dark:text-amber-300 block">Monthly Access</span>
+                    <span class="text-xl font-extrabold text-slate-800 dark:text-slate-100">₹99 <span class="text-xs font-normal text-slate-500">/ month</span></span>
+                </div>
+                <span class="bg-amber-400 text-slate-900 font-bold text-[10px] px-2 py-1 rounded-full">POPULAR</span>
+            </div>
+
+            <!-- Razorpay / Payment Button Trigger -->
+            <button onclick="payWithRazorpay()" class="w-full bg-gradient-to-r from-amber-500 via-rose-500 to-indigo-600 text-white font-extrabold py-3.5 rounded-2xl shadow-lg hover:opacity-90 active:scale-95 transition-all text-sm flex items-center justify-center gap-2">
+                <span>🔒 Subscribe Now (₹99)</span>
+            </button>
+            <p class="text-[10px] text-slate-400 mt-3">100% Secure Payments via Razorpay / UPI</p>
+        </div>
+    </div>
+
+    <!-- SCRIPT EXECUTION -->
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0284c7',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                        }
-                    }
-                }
+        let globalScore = 0;
+
+        // Nursery Dataset
+        const nurseryData = [
+            { symbol: 'A', name: 'Apple', emoji: '🍎', cat: 'abc', color: 'bg-rose-50 border-rose-200 text-rose-600' },
+            { symbol: 'B', name: 'Ball', emoji: '⚽', cat: 'abc', color: 'bg-blue-50 border-blue-200 text-blue-600' },
+            { symbol: 'C', name: 'Cat', emoji: '🐱', cat: 'abc', color: 'bg-amber-50 border-amber-200 text-amber-600' },
+            { symbol: 'D', name: 'Dog', emoji: '🐶', cat: 'abc', color: 'bg-emerald-50 border-emerald-200 text-emerald-600' },
+            { symbol: 'E', name: 'Elephant', emoji: '🐘', cat: 'abc', color: 'bg-purple-50 border-purple-200 text-purple-600' },
+            { symbol: 'F', name: 'Fish', emoji: '🐠', cat: 'abc', color: 'bg-cyan-50 border-cyan-200 text-cyan-600' },
+            { symbol: '1', name: 'One', emoji: '1️⃣', cat: '123', color: 'bg-indigo-50 border-indigo-200 text-indigo-600' },
+            { symbol: '2', name: 'Two', emoji: '2️⃣', cat: '123', color: 'bg-indigo-50 border-indigo-200 text-indigo-600' },
+            { symbol: '3', name: 'Three', emoji: '3️⃣', cat: '123', color: 'bg-indigo-50 border-indigo-200 text-indigo-600' },
+            { symbol: 'Circle', name: 'Circle', emoji: '⚪', cat: 'shapes', color: 'bg-yellow-50 border-yellow-200 text-yellow-600' },
+            { symbol: 'Square', name: 'Square', emoji: '🟧', cat: 'shapes', color: 'bg-orange-50 border-orange-200 text-orange-600' },
+            { symbol: 'Star', name: 'Star', emoji: '⭐', cat: 'shapes', color: 'bg-yellow-50 border-yellow-200 text-yellow-600' }
+        ];
+
+        // Class 1-5 All Subjects Concepts
+        const primaryConcepts = [
+            { title: 'Nouns (English Grammar)', desc: 'Naming word for a person, place, animal, or thing. Example: Dog, London, Chair.' },
+            { title: 'Photosynthesis (Science)', desc: 'Process where plants use sunlight, water, and CO2 to create food and release oxygen.' },
+            { title: 'Our Earth (SST / Geo)', desc: 'Earth is the 3rd planet from the Sun and the only known planet with life and liquid water.' },
+            { title: 'Fractions (Math)', desc: 'Represents a part of a whole. e.g., 1/2 means one part out of two equal parts.' }
+        ];
+
+        // Class 6-8 All Subjects Concepts
+        const middleFlashcards = [
+            { title: 'Newton\'s 1st Law (Physics)', desc: 'An object remains at rest or in uniform motion unless acted upon by an external force.' },
+            { title: 'Cell: Unit of Life (Biology)', desc: 'Mitochondria is known as the powerhouse of the cell.' },
+            { title: 'Chemical Change (Chemistry)', desc: 'A change where new chemical substances are formed (e.g., Rusting of iron).' },
+            { title: 'Harappan Civilization (History)', desc: 'One of the world\'s earliest urban civilizations known for grid town planning.' }
+        ];
+
+        // Class 9-10 High School Key Cards
+        const highConcepts = [
+            { title: 'Ohm\'s Law (Physics)', desc: 'V = I × R (Voltage = Current × Resistance). Current is proportional to Voltage.' },
+            { title: 'Periodic Table (Chemistry)', desc: 'Elements organized by atomic number. Groups have similar chemical properties.' },
+            { title: 'Reflection & Refraction (Physics)', desc: 'Snell\'s Law: n₁ sin(θ₁) = n₂ sin(θ₂). Light bends when passing between media.' },
+            { title: 'DNA Structure (Biology)', desc: 'Double helix structure carrying genetic instructions using A, T, C, G bases.' }
+        ];
+
+        // Quizzes Data (All Subjects)
+        const quizData = {
+            primary: [
+                { q: "What is 7 × 8?", options: ["54", "56", "64", "48"], correct: 1 },
+                { q: "Which of these is a Noun?", options: ["Run", "Quickly", "Happiness", "Blue"], correct: 2 },
+                { q: "Which gas do plants release during photosynthesis?", options: ["Carbon Dioxide", "Nitrogen", "Oxygen", "Hydrogen"], correct: 2 }
+            ],
+            middle: [
+                { q: "What is the powerhouse of the cell?", options: ["Nucleus", "Ribosome", "Mitochondria", "Cytoplasm"], correct: 2 },
+                { q: "Value of Pi (π) approx:", options: ["3.14", "2.14", "4.13", "1.41"], correct: 0 },
+                { q: "Who was the first emperor of Mughal Dynasty in India?", options: ["Akbar", "Babur", "Humayun", "Shah Jahan"], correct: 1 }
+            ],
+            high: [
+                { q: "Formula for Quadratic Equation roots:", options: ["[-b ± √(b²-4ac)]/2a", "a² + b² = c²", "V = IR", "PV = nRT"], correct: 0 },
+                { q: "Ohm's Law equation is:", options: ["F = ma", "V = IR", "E = mc²", "P = VI"], correct: 1 },
+                { q: "Which blood group is called the universal donor?", options: ["AB+", "A+", "O-", "B-"], correct: 2 }
+            ]
+        };
+
+        function switchGrade(grade) {
+            const grades = ['nursery', 'primary', 'middle', 'high'];
+            grades.forEach(g => {
+                document.getElementById(`view-${g}`).classList.add('hidden');
+                const btn = document.getElementById(`tab-${g}`);
+                btn.className = "grade-btn px-4 py-2 rounded-2xl text-sm font-bold transition-all shrink-0 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200";
+            });
+
+            document.getElementById(`view-${grade}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${grade}`);
+            activeBtn.className = "grade-btn px-4 py-2 rounded-2xl text-sm font-bold transition-all shrink-0 bg-indigo-600 text-white shadow-sm";
+        }
+
+        function filterNurseryCategory(cat) {
+            renderNurseryCards(cat);
+        }
+
+        function renderNurseryCards(filter = 'all') {
+            const grid = document.getElementById('nursery-cards-grid');
+            const filtered = filter === 'all' ? nurseryData : nurseryData.filter(i => i.cat === filter);
+
+            grid.innerHTML = filtered.map(item => `
+                <div onclick="speakItem('${item.symbol}', '${item.name}', '${item.emoji}')" class="${item.color} dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 rounded-3xl p-5 shadow-sm border-2 transform hover:-translate-y-1 hover:shadow-md transition-all cursor-pointer flex flex-col items-center justify-center text-center group">
+                    <span class="text-5xl mb-2 group-hover:scale-110 transition-transform">${item.emoji}</span>
+                    <span class="kids-font text-3xl font-bold mb-1">${item.symbol}</span>
+                    <span class="text-xs font-bold opacity-80">${item.name}</span>
+                </div>
+            `).join('');
+        }
+
+        function speakItem(symbol, name, emoji) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const text = isNaN(symbol) ? `${symbol} for ${name}` : `Number ${symbol}`;
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.9;
+                utterance.pitch = 1.1;
+                window.speechSynthesis.speak(utterance);
+            }
+
+            document.getElementById('modal-symbol').innerText = symbol;
+            document.getElementById('modal-name').innerText = name;
+            document.getElementById('modal-emoji').innerText = emoji;
+
+            const modal = document.getElementById('speech-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeSpeechModal() {
+            const modal = document.getElementById('speech-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function generateMathTable() {
+            const num = document.getElementById('table-num').value || 5;
+            const container = document.getElementById('table-output');
+            let html = '';
+            for (let i = 1; i <= 10; i++) {
+                html += `<div class="flex justify-between py-1 border-b dark:border-slate-800 last:border-0">
+                    <span>${num} × ${i}</span>
+                    <span class="font-bold text-indigo-600 dark:text-indigo-400">= ${num * i}</span>
+                </div>`;
+            }
+            container.innerHTML = html;
+        }
+
+        function renderConceptCards() {
+            document.getElementById('primary-concepts').innerHTML = primaryConcepts.map(c => `
+                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border dark:border-slate-700 space-y-1">
+                    <h4 class="font-bold text-sm text-slate-800 dark:text-slate-100">${c.title}</h4>
+                    <p class="text-xs text-slate-600 dark:text-slate-300">${c.desc}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('middle-flashcards').innerHTML = middleFlashcards.map(c => `
+                <div class="p-4 rounded-2xl bg-teal-50/50 dark:bg-slate-700/50 border border-teal-100 dark:border-slate-700 space-y-1">
+                    <h4 class="font-bold text-sm text-teal-900 dark:text-teal-300">${c.title}</h4>
+                    <p class="text-xs text-slate-600 dark:text-slate-300">${c.desc}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('high-concepts').innerHTML = highConcepts.map(c => `
+                <div class="p-4 rounded-2xl bg-purple-50/50 dark:bg-slate-700/50 border border-purple-100 dark:border-slate-700 space-y-1">
+                    <h4 class="font-bold text-sm text-purple-900 dark:text-purple-300">${c.title}</h4>
+                    <p class="text-xs text-slate-600 dark:text-slate-300">${c.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderQuizzes() {
+            ['primary', 'middle', 'high'].forEach(level => {
+                const container = document.getElementById(`${level}-quiz-container`);
+                container.innerHTML = quizData[level].map((item, qIdx) => `
+                    <div class="bg-slate-50 dark:bg-slate-700/40 p-4 rounded-2xl space-y-3 border dark:border-slate-700">
+                        <p class="font-bold text-sm text-slate-800 dark:text-slate-100">${qIdx + 1}. ${item.q}</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            ${item.options.map((opt, oIdx) => `
+                                <button onclick="checkAnswer('${level}', ${qIdx},${oIdx}, this)" class="p-2.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-left hover:border-indigo-500 transition-all">
+                                    ${opt}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
+            });
+        }
+
+        function checkAnswer(level, qIdx, selectedIdx, btnElement) {
+            const question = quizData[level][qIdx];
+            const parent = btnElement.parentElement;
+            const buttons = parent.querySelectorAll('button');
+
+            buttons.forEach(b => b.disabled = true);
+
+            if (selectedIdx === question.correct) {
+                btnElement.classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+                globalScore += 10;
+                document.getElementById('global-score').innerText = globalScore;
+            } else {
+                btnElement.classList.add('bg-rose-500', 'text-white', 'border-rose-500');
+                buttons[question.correct].classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
             }
         }
+
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.innerText = '🌙';
+            } else {
+                html.classList.add('dark');
+                icon.innerText = '☀️';
+            }
+        }
+
+        function openSubscriptionModal() {
+            const modal = document.getElementById('subscription-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeSubscriptionModal() {
+            const modal = document.getElementById('subscription-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function payWithRazorpay() {
+            alert("Razorpay Integration Placeholder: Connect your Razorpay Key to accept live payments via UPI/Cards!");
+        }
+
+        window.onload = function() {
+            renderNurseryCards();
+            generateMathTable();
+            renderConceptCards();
+            renderQuizzes();
+        };
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .kids-font {
-            font-family: 'Fredoka', cursive;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            height: 6px;
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-    </style>
-</head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col">
-
-    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
-            
-            <!-- Logo & Title -->
-            <div class="flex items-center gap-3 cursor-pointer" onclick="switchGrade('nursery')">
-                <div class="bg-gradient-to-tr from-amber-400 via-rose-500 to-indigo-600 p-2.5 rounded-2xl text-white shadow-md">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                </div>
-                <div>
-                    <h1 class="kids-font text-2xl sm:text-3xl text-indigo-600 dark:text-indigo-400 leading-none">EduSmart Hub</h1>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-0.5">Nursery to Class 10th</p>
-                </div>
-            </div>
-
-            <!-- Grade Switcher Tabs -->
-            <div class="flex items-center gap-2 overflow-x-auto custom-scrollbar py-1 max-w-full">
-                <button onclick="switchGrade('nursery')" id="tab-nursery" class="grade-btn px-4 py-2 rounded-2xl text-sm font-bold transition-all shrink-0 bg-indigo-600 text-white shadow-sm">
-                    🎈 Nursery & KG
-                </button>
-                <button onclick="switchGrade('primary')" id="tab-primary" class="grade-btn px-4 py-2 rounded-2xl text-sm font-bold transition-all shrink-0 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200">
-                    📘 Class 1-5
-                </button>
-                <button onclick="switchGrade('middle')" id="tab-middle" class="grade-btn px-4 py-2 rounded-2xl text-sm font-bold transition-all shrink-0 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200">
-                    🔬 Class 6-8
-                </button>
-                <button onclick="switchGrade('high')" id="tab-high" class="grade-btn px-4 py-2 rounded-2xl text-sm font-bold transition-all shrink-0 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200">
-                    🎓 Class 9-10
-                </button>
-            </div>
-
-            <!-- Controls (Theme Toggle & Score) -->
-            <div class="flex items-center gap-3">
-                <div class="bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 border border-amber-300 dark:border-amber-700">
-                    <span>⭐ Score:</span>
-                    <span id="global-score">0</span>
-                </div>
-                <button onclick="toggleDarkMode()" class="p-2 rounded-2xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-amber-300 hover:scale-105 transition-transform" title="Toggle Theme">
-                    <span id="theme-icon">🌙</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
-
-        <!-- ================= SECTION 1: NURSERY & KG ================= -->
-        <section id="view-nursery" class="space-y-6">
-            <div class="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-3xl p-6 text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
-                <div>
-                    <h2 class="kids-font text-3xl sm:text-4xl">Early Childhood Learning 🎉</h2>
-                    <p class="text-pink-100 text-sm sm:text-base mt-1">Interactive Alphabets, Numbers, Colors, Shapes, and Animals with Speech & Sound!</p>
-                </div>
-                <div class="flex gap-2">
-                    <button onclick="filterNurseryCategory('all')" class="bg-white/20 hover:bg-white/30 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-bold border border-white/30">All</button>
-                    <button onclick="filterNurseryCategory('abc')" class="bg-white/20 hover:bg-white/30 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-bold border border-white/30">🔤 ABC</button>
-                    <button onclick="filterNurseryCategory('123')" class="bg-white/20 hover:bg-white/30 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-bold border border-white/30">🔢 123</button>
-                    <button onclick="filterNurseryCategory('shapes')" class="bg-white/20 hover:bg-white/30 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-bold border border-white/30">📐 Shapes</button>
-                </div>
-            </div>
-
-            <div id="nursery-cards-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
-                <!-- Nursery Cards Dynamic Insert -->
-            </div>
-        </section>
-
-        <!-- ================= SECTION 2: CLASS 1 - 5 ================= -->
-        <section id="view-primary" class="hidden space-y-6">
-            <div class="bg-gradient-to-r from-blue-600 to-cyan-500 rounded-3xl p-6 text-white shadow-lg">
-                <h2 class="text-2xl sm:text-3xl font-extrabold">Primary School (Class 1-5) 📘</h2>
-                <p class="text-blue-100 text-sm mt-1">Master Math Tables, Grammar Essentials, and Fundamental Science!</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Multiplication Table Tool -->
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h3 class="font-bold text-lg text-indigo-600 dark:text-indigo-400">✖️ Math Tables Generator</h3>
-                        <input type="number" id="table-num" value="5" min="1" max="20" onchange="generateMathTable()" class="w-16 p-2 text-center rounded-xl border dark:border-slate-600 bg-slate-50 dark:bg-slate-700 font-bold">
-                    </div>
-                    <div id="table-output" class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl font-mono text-sm space-y-1 max-h-64 overflow-y-auto">
-                        <!-- Math table content -->
-                    </div>
-                </div>
-
-                <!-- Primary Science Basics Flashcards -->
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4 md:col-span-2">
-                    <h3 class="font-bold text-lg text-emerald-600 dark:text-emerald-400">🌱 Science & Grammar Concepts</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="primary-concepts">
-                        <!-- Primary concepts -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quiz Section for Class 1-5 -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                <h3 class="font-bold text-xl mb-4 text-purple-600 dark:text-purple-400 flex items-center gap-2">
-                    <span>🎯</span> Class 1-5 Practice Quiz
-                </h3>
-                <div id="primary-quiz-container" class="space-y-4">
-                    <!-- Dynamic Primary Quiz -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= SECTION 3: CLASS 6 - 8 ================= -->
-        <section id="view-middle" class="hidden space-y-6">
-            <div class="bg-gradient-to-r from-emerald-600 to-teal-500 rounded-3xl p-6 text-white shadow-lg">
-                <h2 class="text-2xl sm:text-3xl font-extrabold">Middle School (Class 6-8) 🔬</h2>
-                <p class="text-emerald-100 text-sm mt-1">Physics, Chemistry, Biology interactive concepts, Math Formulas & Facts!</p>
-            </div>
-
-            <!-- Subject Tabs for Middle School -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Math Formulas -->
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3">
-                    <h3 class="font-bold text-lg text-blue-600 dark:text-blue-400">📐 Math Formulas</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-2xl border dark:border-slate-700">
-                            <span class="font-bold block text-slate-700 dark:text-slate-200">Area of Circle:</span>
-                            <code class="text-pink-600 dark:text-pink-400 font-bold">A = π × r²</code>
-                        </div>
-                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-2xl border dark:border-slate-700">
-                            <span class="font-bold block text-slate-700 dark:text-slate-200">Perimeter of Rectangle:</span>
-                            <code class="text-pink-600 dark:text-pink-400 font-bold">P = 2 × (Length + Width)</code>
-                        </div>
-                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-2xl border dark:border-slate-700">
-                            <span class="font-bold block text-slate-700 dark:text-slate-200">Speed Formula:</span>
-                            <code class="text-pink-600 dark:text-pink-400 font-bold">Speed = Distance / Time</code>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Science Key Cards -->
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3 md:col-span-2">
-                    <h3 class="font-bold text-lg text-teal-600 dark:text-teal-400">⚗️ Science Flashcards</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="middle-flashcards">
-                        <!-- Science dynamic content -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quiz for Middle School -->
-            <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                <h3 class="font-bold text-xl mb-4 text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
-                    <span>🧠</span> Class 6-8 Challenge Quiz
-                </h3>
-                <div id="middle-quiz-container" class="space-y-4"></div>
-            </div>
-        </section>
-
-        <!-- ================= SECTION 4: CLASS 9 - 10 ================= -->
-        <section id="view-high" class="hidden space-y-6">
-            <div class="bg-gradient-to-r from-purple-700 via-indigo-700 to-blue-700 rounded-3xl p-6 text-white shadow-lg">
-                <h2 class="text-2xl sm:text-3xl font-extrabold">High School (Class 9th & 10th) 🎓</h2>
-                <p class="text-purple-100 text-sm mt-1">Advanced Mathematics, Physics Laws, Chemical Equations & Test Preparation!</p>
-            </div>
-
-            <!-- Formula Bank & Key Concepts -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Class 9/10 Math Formulas -->
-                <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3">
-                    <h3 class="font-bold text-lg text-indigo-600 dark:text-indigo-400">🧮 Algebra & Geometry Formulas</h3>
-                    <div class="space-y-3 text-xs sm:text-sm">
-                        <div class="p-3 bg-indigo-50 dark:bg-indigo-950/40 rounded-2xl border border-indigo-100 dark:border-indigo-900">
-                            <p class="font-bold text-indigo-900 dark:text-indigo-300">Quadratic Formula:</p>
-                            <p class="font-mono text-slate-700 dark:text-slate-300 mt-1">x = [-b ± √(b² - 4ac)] / 2a</p>
-                        </div>
-                        <div class="p-3 bg-indigo-50 dark:bg-indigo-950/40 rounded-2xl border border-indigo-100 dark:border-indigo-900">
-                            <p class="font-bold text-indigo-900 dark:text-indigo-300">Pythagoras Theorem:</p>
-                            <p class="font-mono text-slate-700 dark:text-slate-300 mt-1">a² + b² = c²</p>
-                        </div>
-                        <div class="p-3 bg-indigo-50 dark:bg-indigo-950/40 rounded-2xl border border-indigo-100 dark:border-indigo-900">
-                            <p class="font-bold text-indigo-900 dark:text-indigo-300">Trigonometry Identity:</p>
-                            <p class="font-mono text-slate-700 dark:text-slate-300 mt-1">sin²(θ) + cos
+</body>
+</html>
