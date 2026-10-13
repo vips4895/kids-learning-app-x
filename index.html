@@ -43,47 +43,225 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col selection:bg-amber-200">
+
     <!-- TOP ADVERT BANNER -->
-    <div class="bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-200 text-xs px-4 py-2 text-center border-b border-amber-200 dark:border-amber-900 flex flex-wrap items-center justify-center gap-2">
-        <span>EduSmart Pro Subscription at 50% OFF! Learn Without Ads.</span>
-        <button onclick="openSubscriptionModal()" class="underline font-bold text-indigo-600 dark:text-indigo-400">Upgrade Now</button>
+    <div class="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 text-slate-900 text-xs sm:text-sm font-semibold px-4 py-2 text-center shadow-inner flex flex-wrap items-center justify-center gap-2">
+        <span>🎉 Special Offer: EduSmart Pro Subscription at 50% OFF! Learn Without Ads.</span>
+        <button onclick="openSubscriptionModal()" class="bg-slate-900 text-white px-3 py-1 rounded-full font-bold hover:bg-slate-800 transition-transform active:scale-95 shadow">Upgrade Now ⭐</button>
     </div>
 
     <!-- HEADER / NAVBAR -->
-    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
+    <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="switchGrade('nursery')">
-                <div class="w-10 h-10 rounded-xl bg-brand-500 text-white flex items-center justify-center font-bold text-xl kids-font shadow-md">
-                    ES
+            
+            <!-- BRAND LOGO & TITLE -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="resetToHome()">
+                <!-- New Creative Logo -->
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 via-sky-500 to-amber-400 p-0.5 shadow-md hover:scale-105 transition-transform flex items-center justify-center">
+                    <div class="w-full h-full bg-white dark:bg-slate-800 rounded-[14px] flex items-center justify-center">
+                        <span class="kids-font font-black text-2xl bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">ES</span>
+                    </div>
                 </div>
                 <div>
-                    <h1 class="kids-font text-xl sm:text-2xl text-indigo-600 dark:text-indigo-400 leading-none">EduSmart Hub</h1>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-0.5">Nursery to Class 10th (All Subjects)</p>
+                    <h1 class="kids-font text-xl sm:text-2xl font-bold bg-gradient-to-r from-indigo-600 via-sky-600 to-amber-500 bg-clip-text text-transparent leading-none">EduSmart Hub</h1>
+                    <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">Nursery to Class 10th • All Subjects</p>
                 </div>
+            </div>
+
+            <!-- RIGHT ACTION BUTTONS -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="openSubscriptionModal()" class="hidden sm:flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-md hover:brightness-105 transition active:scale-95">
+                    <span>👑 PRO</span>
+                </button>
+
+                <button onclick="toggleDarkMode()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition" title="Toggle Dark/Light Mode">
+                    🌙
+                </button>
             </div>
         </div>
     </header>
 
     <!-- MAIN CONTENT AREA -->
     <main class="flex-grow max-w-7xl mx-auto px-4 py-6 w-full">
-        <div class="text-center py-12">
-            <h2 class="text-3xl kids-font font-bold mb-4">Welcome to EduSmart Kids Learning Hub!</h2>
-            <p class="text-slate-600 dark:text-slate-400">Select your grade and start learning fun subjects today.</p>
+        
+        <!-- BREADCRUMB / BACK BUTTON -->
+        <div id="breadcrumb" class="hidden mb-4 items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+            <button onclick="resetToHome()" class="hover:text-indigo-600 font-semibold flex items-center gap-1">
+                🏠 Home
+            </button>
+            <span>/</span>
+            <span id="current-grade-label" class="font-bold text-slate-800 dark:text-slate-200"></span>
+        </div>
+
+        <!-- HERO SECTION -->
+        <div id="hero-section" class="text-center py-6 sm:py-10">
+            <h2 class="text-3xl sm:text-4xl kids-font font-bold mb-3 text-indigo-600 dark:text-indigo-400">Welcome to EduSmart Kids Hub!</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto">Apni class chunein aur mazedaar tareeqe se saare subjects padhna shuru karein.</p>
+        </div>
+
+        <!-- GRADE SELECTION GRID -->
+        <div id="grade-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 pb-12">
+            <!-- Nursery -->
+            <div onclick="selectGrade('Nursery')" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-indigo-500 hover:shadow-lg hover:-translate-y-1 cursor-pointer transition-all text-center group">
+                <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-2xl font-bold kids-font group-hover:scale-110 transition-transform">🧸</div>
+                <h3 class="kids-font font-bold text-lg text-slate-800 dark:text-white">Nursery</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Fun & Basics</p>
+            </div>
+
+            <!-- LKG -->
+            <div onclick="selectGrade('LKG')" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-indigo-500 hover:shadow-lg hover:-translate-y-1 cursor-pointer transition-all text-center group">
+                <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl font-bold kids-font group-hover:scale-110 transition-transform">🎨</div>
+                <h3 class="kids-font font-bold text-lg text-slate-800 dark:text-white">LKG</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">ABC & Numbers</p>
+            </div>
+
+            <!-- UKG -->
+            <div onclick="selectGrade('UKG')" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-indigo-500 hover:shadow-lg hover:-translate-y-1 cursor-pointer transition-all text-center group">
+                <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold kids-font group-hover:scale-110 transition-transform">🚀</div>
+                <h3 class="kids-font font-bold text-lg text-slate-800 dark:text-white">UKG</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Reading & Words</p>
+            </div>
+
+            <!-- Classes 1 to 10 -->
+            <script>
+                const icons = ['📘', '📐', '🔬', '🌍', '🧪', '🧬', '💻', '📈', '📜', '🎓'];
+                for (let i = 1; i <= 10; i++) {
+                    document.write(`
+                        <div onclick="selectGrade('Class ${i}')" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-indigo-500 hover:shadow-lg hover:-translate-y-1 cursor-pointer transition-all text-center group">
+                            <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-2xl font-bold kids-font group-hover:scale-110 transition-transform">${icons[i-1]}</div>
+                            <h3 class="kids-font font-bold text-lg text-slate-800 dark:text-white">Class ${i}</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">All Subjects</p>
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+
+        <!-- SUBJECTS SECTION (Initially Hidden) -->
+        <div id="subjects-section" class="hidden">
+            <h3 class="text-2xl kids-font font-bold mb-6 text-slate-800 dark:text-white">Select Subject:</h3>
+            <div id="subjects-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Dynamically filled -->
+            </div>
         </div>
     </main>
+
+    <!-- SUBSCRIPTION MODAL -->
+    <div id="subscription-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative border border-amber-300 dark:border-amber-500 animate-fadeIn">
+            <!-- Close Button -->
+            <button onclick="closeSubscriptionModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white text-xl font-bold p-2">✕</button>
+
+            <div class="text-center">
+                <span class="inline-block bg-amber-100 text-amber-800 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider mb-3">EduSmart Pro Plan</span>
+                <h3 class="text-2xl sm:text-3xl kids-font font-bold text-slate-900 dark:text-white">Unlock Unlimited Learning! 🚀</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 mt-2">Ad-free videos, quizzes, downloadable worksheets & doubt clearance.</p>
+            </div>
+
+            <!-- Pricing Options -->
+            <div class="grid grid-cols-2 gap-4 my-6">
+                <div class="border-2 border-slate-200 dark:border-slate-700 hover:border-amber-500 p-4 rounded-2xl cursor-pointer text-center transition-all bg-slate-50 dark:bg-slate-700/50">
+                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400">Monthly</p>
+                    <p class="text-2xl font-black text-indigo-600 dark:text-indigo-400 mt-1">₹199<span class="text-xs font-normal text-slate-500">/mo</span></p>
+                </div>
+                <div class="border-2 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 p-4 rounded-2xl cursor-pointer text-center relative shadow-sm">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full">BEST VALUE</span>
+                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400">Yearly (50% OFF)</p>
+                    <p class="text-2xl font-black text-amber-600 dark:text-amber-400 mt-1">₹999<span class="text-xs font-normal text-slate-500">/yr</span></p>
+                </div>
+            </div>
+
+            <!-- Features List -->
+            <ul class="text-sm space-y-2.5 mb-6 text-slate-700 dark:text-slate-300">
+                <li class="flex items-center gap-2">✅ <span>100% Ad-Free uninterrupted learning</span></li>
+                <li class="flex items-center gap-2">✅ <span>Full Access to Nursery – Class 10th Content</span></li>
+                <li class="flex items-center gap-2">✅ <span>Interactive Quizzes & Printable PDF Worksheets</span></li>
+                <li class="flex items-center gap-2">✅ <span>Progress Tracking & Performance Report</span></li>
+            </ul>
+
+            <!-- Subscribe Action Button -->
+            <button onclick="alert('Payment Gateway integration active!')" class="w-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white font-bold py-3.5 rounded-2xl shadow-lg hover:brightness-105 active:scale-98 transition text-lg kids-font">
+                Proceed to Payment ₹999
+            </button>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 py-6 text-center text-xs text-slate-500">
         <p>&copy; 2026 EduSmart Kids Learning Hub. All rights reserved. | <a href="./privacy.html" class="underline">Privacy Policy</a></p>
     </footer>
 
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        function switchGrade(grade) {
-            console.log("Switched to grade:", grade);
+        const subjectsData = {
+            'Nursery': [
+                { name: 'Fun English (Rhymes & ABC)', icon: '🔤', color: 'from-pink-500 to-rose-400' },
+                { name: 'Fun Maths (Numbers & Shapes)', icon: '🔢', color: 'from-purple-500 to-indigo-400' },
+                { name: 'Coloring & Drawing', icon: '🎨', color: 'from-amber-500 to-orange-400' },
+                { name: 'General Awareness', icon: '🌱', color: 'from-emerald-500 to-teal-400' }
+            ],
+            'Default': [
+                { name: 'Mathematics', icon: '📐', color: 'from-blue-600 to-sky-400' },
+                { name: 'Science', icon: '🔬', color: 'from-emerald-600 to-teal-400' },
+                { name: 'English Language', icon: '📖', color: 'from-indigo-600 to-purple-400' },
+                { name: 'Hindi', icon: '📙', color: 'from-amber-600 to-orange-400' },
+                { name: 'Social Studies (EVS)', icon: '🌍', color: 'from-rose-600 to-pink-400' },
+                { name: 'Computer / AI Basics', icon: '💻', color: 'from-cyan-600 to-blue-400' }
+            ]
+        };
+
+        function selectGrade(grade) {
+            document.getElementById('hero-section').classList.add('hidden');
+            document.getElementById('grade-grid').classList.add('hidden');
+            document.getElementById('breadcrumb').classList.remove('hidden');
+            document.getElementById('breadcrumb').classList.add('flex');
+            document.getElementById('current-grade-label').innerText = grade;
+
+            const subjectsGrid = document.getElementById('subjects-grid');
+            subjectsGrid.innerHTML = '';
+
+            const list = subjectsData[grade] || subjectsData['Default'];
+
+            list.forEach(sub => {
+                subjectsGrid.innerHTML += `
+                    <div onclick="openSubject('${grade}', '${sub.name}')" class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md cursor-pointer transition-all overflow-hidden group">
+                        <div class="h-24 bg-gradient-to-r ${sub.color} p-4 flex items-center justify-between text-white">
+                            <span class="text-4xl group-hover:scale-110 transition-transform">${sub.icon}</span>
+                            <span class="text-xs bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-full font-bold">Chapters</span>
+                        </div>
+                        <div class="p-5">
+                            <h4 class="kids-font font-bold text-lg text-slate-800 dark:text-white">${sub.name}</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Interactive Lessons & Quizzes</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('subjects-section').classList.remove('hidden');
         }
+
+        function openSubject(grade, subject) {
+            alert(grade + " - " + subject + " Lessons coming up next!");
+        }
+
+        function resetToHome() {
+            document.getElementById('subjects-section').classList.add('hidden');
+            document.getElementById('breadcrumb').classList.add('hidden');
+            document.getElementById('hero-section').classList.remove('hidden');
+            document.getElementById('grade-grid').classList.remove('hidden');
+        }
+
         function openSubscriptionModal() {
-            alert("Subscription modal coming soon!");
+            document.getElementById('subscription-modal').classList.remove('hidden');
+        }
+
+        function closeSubscriptionModal() {
+            document.getElementById('subscription-modal').classList.add('hidden');
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
         }
     </script>
 </body>
